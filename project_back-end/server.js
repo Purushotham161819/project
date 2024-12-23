@@ -1,11 +1,18 @@
 const { server } = require("./dependencies");
+const express = require("express");
+const path = require("path");
+
+// Serve files from the 'uploads' directory located in the root of the project
+server.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 const authenticateUser = require("./middleware/authenticateUser"); // Import authenticateUser middleware
 // Apply authenticateUser globally for all routes that follow
 server.use(authenticateUser);
+
 require("./apis/templateApi"); // Template API routes
 require("./apis/recipientApi"); // Recipient API routes
-require("./apis/documentApi"); // Document API routes
-require("./apis/authApi"); // Ensure the signup/lgin route is available
+require("./apis/authApi"); // Ensure the signup/login route is available
+require("./apis/documentGenerationApi"); // Import document generation API routes
 
 const { logout } = require("./apis/authApi"); // Import logout function
 

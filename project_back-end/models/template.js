@@ -8,7 +8,8 @@ const templateSchema = new mongoose.Schema({
     {
       label: { type: String, required: true },
       type: { type: String, required: true },
-      required: { type: Boolean, required: true }
+      required: { type: Boolean, required: true },
+      placeholder: { type: String, required: false }
     }
   ],
   status: { type: String, enum: ['active', 'archived'], default: 'active' },

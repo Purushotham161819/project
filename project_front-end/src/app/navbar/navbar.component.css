@@ -1,0 +1,104 @@
+/* Project Title Styles */
+.project-title {
+  font-size: 24px; /* Set a larger font size */
+  font-weight: bold; /* Make the text bold */
+  color: #1e293b; /* Set text color */
+  text-align: center; /* Center the text horizontally */
+  padding: 10px 0; /* Add spacing above and below */
+  background-color: #f8f9fa; /* Light background color */
+  border-bottom: 1px solid #e0e0e0; /* Add a separator line */
+}
+
+/* Sidenav Container */
+.sidenav-container {
+  height: 100vh; /* Full height */
+  display: flex;
+}
+
+/* Sidenav Styles */
+.sidenav {
+  width: 75px;
+  background-color: #9ca4b0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  padding: 16px 0;
+  box-sizing: border-box;
+  border-radius: 2px; /* Add rounded corners */
+}
+
+/* Navigation Item Styles */
+.nav-item {
+  display: flex;
+  flex-direction: column; /* Stack icon and text vertically */
+  align-items: center; /* Center both icon and text */
+  justify-content: center; /* Center vertically */
+  text-align: center; /* Center-align text */
+  color: white; /* Set both icon and text color to white */
+  text-decoration: none; /* Remove underline for links */
+  padding: 12px 0; /* Add vertical spacing between items */
+  width: 100%; /* Occupy full width of the sidenav */
+  box-sizing: border-box; /* Include padding in width calculations */
+}
+
+/* Navigation List */
+.mat-nav-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  gap: 12px;
+}
+
+/* Navigation Item */
+.mat-list-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+  gap: 6px;
+  box-sizing: border-box;
+}
+
+/* Center the icon */
+.icon-text mat-icon {
+  font-size: 28px;
+  margin: 0 auto;
+  display: block;
+  color: white;
+}
+
+.mat-nav-list {
+  width: 100%; /* Full width of the sidenav */
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center content horizontally */
+  padding: 0; /* Remove extra padding */
+}
+
+/* Navigation Text */
+.icon-text span {
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+}
+
+/* Hover effect for the nav item */
+.nav-item:hover {
+  background-color: #374151; /* Add a subtle background highlight on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Content Area Styles */
+.content {
+  flex: 1; /* Occupy the remaining space */
+  padding: 16px; /* Add spacing for content */
+  overflow: auto; /* Ensure scrollable content if necessary */
+}

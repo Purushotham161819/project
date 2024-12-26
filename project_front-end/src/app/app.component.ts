@@ -7,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'project_front-end';
+  // Check if the application is running in a browser environment
+  get isLoggedIn(): boolean {
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      return !!localStorage.getItem('authToken');
+    }
+    return false; // Return false for SSR context
+  }
 }

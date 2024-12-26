@@ -7,7 +7,17 @@ import { serverRoutes } from './app.routes.server';
 
 @NgModule({
   imports: [AppModule, ServerModule],
-  providers: [provideServerRoutesConfig(serverRoutes)],
+  providers: [provideServerRoutesConfig(serverRoutes),
+    {
+      provide: 'localStorage',
+      useValue: {
+        getItem: () => null,
+        setItem: () => undefined,
+        removeItem: () => undefined,
+        clear: () => undefined
+      }
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppServerModule {}

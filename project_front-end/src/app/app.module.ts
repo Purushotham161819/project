@@ -5,7 +5,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'; 
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +17,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { RecipientsComponent } from './recipients/recipients.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,7 @@ import { RecipientsComponent } from './recipients/recipients.component';
     DashboardComponent,
     UsersComponent,
     RecipientsComponent,
+    AuthenticationComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,9 +36,12 @@ import { RecipientsComponent } from './recipients/recipients.component';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule, 
+    HttpClientModule
   ],
   providers: [
+    provideHttpClient(withFetch()), // Enables fetch API for HTTP client
     provideClientHydration(withEventReplay()),
     provideAnimationsAsync()
   ],

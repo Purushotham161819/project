@@ -1,5 +1,9 @@
 <div class="project-title">
   <span>My Project</span>
+  <button mat-button (click)="logout()" class="logout-button">
+    <mat-icon>logout</mat-icon>
+    Logout
+  </button>
 </div>
 
 <mat-sidenav-container class="sidenav-container">
@@ -25,7 +29,6 @@
       </a>
     </mat-nav-list>
   </mat-sidenav>
-
   <mat-sidenav-content class="content">
     <router-outlet></router-outlet>
   </mat-sidenav-content>

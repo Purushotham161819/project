@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthenticationComponent } from './authentication/authentication.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { RecipientsComponent } from './recipients/recipients.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'users', component: UsersComponent },
-  { path: 'recipients', component: RecipientsComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, // Redirect to Dashboard by default
-  { path: '**', redirectTo: '/dashboard' }, // Wildcard route for 404
+  { path: 'login', component: AuthenticationComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+  { path: 'recipients', component: RecipientsComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login' }, // Wildcard route for invalid paths
 ];
 
 @NgModule({

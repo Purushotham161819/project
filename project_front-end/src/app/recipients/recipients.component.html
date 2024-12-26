@@ -1,3 +1,62 @@
-<h1>Recipients</h1>
-<p>View and manage recipients.</p>
-
+<div class="recipients-container">
+    <!-- Add Recipient Button -->
+    <div class="header">
+      <button class="add-recipient-button" (click)="toggleForm()">Add Recipient</button>
+    </div>
+  
+    <!-- Recipient Form -->
+    <div class="form-container" *ngIf="showForm">
+      <form (ngSubmit)="submitForm()" #recipientForm="ngForm">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            [(ngModel)]="formData.firstName"
+            #firstName="ngModel"
+            required
+          />
+          <div *ngIf="firstName.invalid && firstName.touched" class="error">
+            First name is required and should only contain alphabets and spaces.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            [(ngModel)]="formData.lastName"
+            #lastName="ngModel"
+            required
+          />
+          <div *ngIf="lastName.invalid && lastName.touched" class="error">
+            Last name is required and should only contain alphabets and spaces.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="formData.email"
+            #email="ngModel"
+            required
+            email
+          />
+          <div *ngIf="email.invalid && email.touched" class="error">
+            Please enter a valid email address.
+          </div>
+        </div>
+  
+        <button type="submit" [disabled]="recipientForm.invalid" class="submit-button">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+  

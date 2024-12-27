@@ -3,20 +3,12 @@ const express = require("express");
 const path = require("path");
 const cors = require('cors');
 
-// Enable CORS (if needed for other services, like development tools)
 server.use(cors());
-
-// Middleware to parse JSON
 server.use(express.json());
 
-// Serve Angular app files
-server.use(express.static(path.join(__dirname, '../project_front-end/dist/project-front-end')));
-
-// Serve Angular's index.html for all unknown routes
-server.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/project-front-end/index.html'));
+server.get('/test', (req, res) => {
+  res.json({ message: 'Test route works!' });
 });
-
 
 // Serve files from the 'uploads' directory located in the root of the project
 server.use("/uploads", express.static(path.join(__dirname, "uploads")));

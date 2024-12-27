@@ -2,8 +2,7 @@ const { server } = require("../dependencies");
 const Recipient = require("../models/recipient");
 const { VALIDATION_PATTERNS } = require("../dependencies");
 const logAuditEvent = require("../helpers/auditLogHelper");
-const authenticateUser = require("../middleware/authenticateUser"); 
-
+const authenticateUser = require("../middleware/authenticateUser");
 
 // API to add recipient data
 server.post("/addRecipient", async (req, res) => {
@@ -56,10 +55,11 @@ server.post("/addRecipient", async (req, res) => {
     });
   } catch (err) {
     console.error("Error creating Recipient", err);
-    res.status(500).json({ message: "Internal server error", error: err.message });
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: err.message });
   }
 });
-
 
 // API to get a recipient by id
 server.get("/getRecipient/:id", async (req, res) => {
@@ -84,10 +84,39 @@ server.get("/getRecipient/:id", async (req, res) => {
     res.status(200).json(recipient);
   } catch (error) {
     console.error("Error retrieving recipient", error);
-    res.status(500).json({ message: "Failed to retrieve recipient", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Failed to retrieve recipient", error: error.message });
   }
 });
 
+// API to get all recipients
+server.get("/getRecipients", async (req, res) => {
+  try {
+    // Retrieve all recipients from the database
+    const recipients = await Recipient.find();
+
+    if (!recipients || recipients.length === 0) {
+      return res.status(404).json({ message: "No recipients found" });
+    }
+
+    // Log the event in the audit log (Bulk Recipient retrieval)
+    await logAuditEvent(
+      "READ", // Event type
+      `Viewed all recipients`, // Event description
+      "Recipient", // Affected entity (Recipient)
+      null, // No specific recipient ID for bulk retrieval
+      req.user.id // Assuming req.user.id is available from authentication middleware
+    );
+
+    res.status(200).json(recipients);
+  } catch (error) {
+    console.error("Error retrieving recipients", error);
+    res
+      .status(500)
+      .json({ message: "Failed to retrieve recipients", error: error.message });
+  }
+});
 
 // API to update a recipient by id
 server.put("/updateRecipient/:id", async (req, res) => {
@@ -99,11 +128,10 @@ server.put("/updateRecipient/:id", async (req, res) => {
       return res.status(400).json({ message: "Update data is required" });
     }
 
-    const updatedRecipient = await Recipient.findByIdAndUpdate(
-      id,
-      updateData,
-      { new: true, runValidators: true }
-    );
+    const updatedRecipient = await Recipient.findByIdAndUpdate(id, updateData, {
+      new: true,
+      runValidators: true,
+    });
 
     if (!updatedRecipient) {
       return res.status(404).json({ message: "Recipient not found" });
@@ -124,7 +152,9 @@ server.put("/updateRecipient/:id", async (req, res) => {
     });
   } catch (error) {
     console.error("Error updating recipient", error);
-    res.status(500).json({ message: "Failed to update recipient", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Failed to update recipient", error: error.message });
   }
 });
 

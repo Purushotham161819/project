@@ -25,7 +25,7 @@ export class AuthenticationComponent {
     }
 
     // Send login request to the backend
-    this.http.post('http://localhost:3000/login', this.formData).subscribe(
+    this.http.post('/api/login', this.formData).subscribe(
       (response: any) => {
         // Save token and login flag
         localStorage.setItem('authToken', response.token);

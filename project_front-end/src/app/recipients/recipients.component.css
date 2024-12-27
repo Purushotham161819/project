@@ -68,3 +68,79 @@
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+
+.dynamic-table-container {
+  margin-top: 20px; /* Add spacing above the table */
+}
+
+.recipients-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.recipients-table th,
+.recipients-table td {
+  border: 1px solid #ddd;
+  padding: 2px;
+}
+
+.recipients-table th {
+  background-color: #f4f4f4;
+  text-align: left;
+}
+
+/* Parent <td> to align buttons horizontally */
+td:last-child {
+  display: flex;
+  gap: 8px; /* Add space between buttons */
+  align-items: center;
+  justify-content: start; /* Align buttons to the left */
+}
+
+/* Button styling to hide text */
+.update-button, .delete-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; /* Make buttons square */
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Hide the button text */
+.update-button span,
+.delete-button span {
+  display: none; /* Hide the text inside the button */
+}
+
+/* Icon styling */
+.update-button mat-icon,
+.delete-button mat-icon {
+  font-size: 20px; /* Adjust icon size */
+}
+
+/* Update button color */
+.update-button mat-icon {
+  color: #4285f4; /* Blue for edit */
+}
+
+/* Delete button color */
+.delete-button mat-icon {
+  color: #d32f2f; /* Red for delete */
+}
+
+/* Hover effects */
+.update-button:hover {
+  background-color: rgba(66, 133, 244, 0.1); /* Light blue hover effect */
+}
+
+.delete-button:hover {
+  background-color: rgba(211, 47, 47, 0.1); /* Light red hover effect */
+}
